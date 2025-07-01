@@ -1,0 +1,279 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNrd9JezAn90xmu9gdu+du+",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/bhumika9927/biopy/blob/main/practice\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "RwhUsFgsPPAf",
+        "outputId": "f0b098ba-27cf-4363-d082-ce2b141a0728"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "AUGAUUAUG\n"
+          ]
+        }
+      ],
+      "source": [
+        "from Bio.Seq import Seq\n",
+        "dna=Seq('ATGATTATG')\n",
+        "protein=dna.transcribe()\n",
+        "print(protein)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "e69f868a",
+        "outputId": "cc372dbd-efab-419f-b42b-4649c047bea0"
+      },
+      "source": [
+        "!pip install biopython"
+      ],
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Collecting biopython\n",
+            "  Downloading biopython-1.85-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (13 kB)\n",
+            "Requirement already satisfied: numpy in /usr/local/lib/python3.11/dist-packages (from biopython) (2.0.2)\n",
+            "Downloading biopython-1.85-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)\n",
+            "\u001b[?25l   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m0.0/3.3 MB\u001b[0m \u001b[31m?\u001b[0m eta \u001b[36m-:--:--\u001b[0m\r\u001b[2K   \u001b[91m━━━━━━━━━━━━━\u001b[0m\u001b[91m╸\u001b[0m\u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m1.1/3.3 MB\u001b[0m \u001b[31m33.7 MB/s\u001b[0m eta \u001b[36m0:00:01\u001b[0m\r\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m3.3/3.3 MB\u001b[0m \u001b[31m46.9 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hInstalling collected packages: biopython\n",
+            "Successfully installed biopython-1.85\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from Bio.Seq import Seq\n",
+        "dna=Seq('ATGATTATG')\n",
+        "protein=dna.translate()\n",
+        "print(protein)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "D_iB316bP_Xx",
+        "outputId": "c33eec26-3aa9-4c9b-eaba-9e917ea1f769"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "MIM\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from Bio import SeqIO\n",
+        "fasta_content=\"\"\">seq1\n",
+        "ATGCGAATAG\n",
+        ">seq2\n",
+        " GCGTTTATGCCGTA\"\"\"\n",
+        "with open('test.fasta',\"w\") as f:\n",
+        "  f.write(fasta_content)\n",
+        "\n",
+        "with open('test.fasta',\"r\") as f:\n",
+        "  for record in SeqIO.parse(f,\"fasta\"):\n",
+        "    print(\"ID:\",record.id)\n",
+        "    print(\"Seq:\",record.seq)\n",
+        "    print('---')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "MSpdreU5QJqQ",
+        "outputId": "ba0601d9-e053-46f0-8821-6f722e4158de"
+      },
+      "execution_count": 11,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "ID: seq1\n",
+            "Seq: ATGCGAATAG\n",
+            "---\n",
+            "ID: seq2\n",
+            "Seq: GCGTTTATGCCGTA\n",
+            "---\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from Bio import SeqIO\n",
+        "fasta_content='''>human_mitochindria_mrna\n",
+        "ATGGAATATTTGGCTCATCCCAGTACACTCGGCTTGGCTGTTGGAGTTGCTTGTGGCATGTGCCTGGGCT\n",
+        "GGAGCCTTCGAGTATGCTTTGGGATGCTCCCCAAAAGCAAGACGAGCAAGACACACACAGATACTGAAAG\n",
+        "TGAAGCAAGCATCTTGGGAGACAGCGGGGAGTACAAGATGATTCTTGTGGTTCGAAATGACTTAAAGATG\n",
+        ">dorsophila_mito\n",
+        "atg agacgcgccg gtttaatcaa accgctgttg cgtataaata acgaaaaaca acgtgtttgg agaaaaaact acgctaccca agtggtttcc\n",
+        "       ggcttggagg agtgctcact agaccccaag gagtatgtgg acttcaagcg gcagctgcgg\n",
+        "       cagctcaact tgccccacaa agacggacac acgtgcttgc agctggagtg tcgcctctgc\n",
+        "     gatcgcaata ggcagccggt gacaaacgcc caaaagggca accgatcatgg gctgctggct'''\n",
+        "\n",
+        "\n",
+        "with open('test.fasta',\"w\") as f:\n",
+        "  f.write(fasta_content)\n",
+        "\n",
+        "with open('test.fasta',\"r\") as f:\n",
+        "  for record in SeqIO.parse(f,\"fasta\"):\n",
+        "    print(\"ID:\",record.id)\n",
+        "    if record.id == 'dorsophila_mito':\n",
+        "      print(\"Seq:\",str(record.seq).upper()[:60])\n",
+        "    else:\n",
+        "      print(\"Seq:\",record.seq [:60])\n",
+        "    print('---')\n",
+        "\n",
+        "for record in SeqIO.parse('test.fasta','fasta'):\n",
+        "  print('protein', record.seq.translate(to_stop=True)[:60])\n",
+        "  print('---')\n",
+        "\n",
+        "records=list(SeqIO.parse('test.fasta','fasta'))\n",
+        "seq1,seq2= records[0].seq,records[1].seq\n",
+        "matches=sum(1 for a,b in zip(seq1,seq2) if a==b)\n",
+        "print(f'matching bases:{matches}/{min(len(seq1),len(seq2))}')\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "g66BgyMvRkbR",
+        "outputId": "5395f5e3-d946-4783-9e66-529d39c1cc8f"
+      },
+      "execution_count": 44,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "ID: human_mitochindria_mrna\n",
+            "Seq: ATGGAATATTTGGCTCATCCCAGTACACTCGGCTTGGCTGTTGGAGTTGCTTGTGGCATG\n",
+            "---\n",
+            "ID: dorsophila_mito\n",
+            "Seq: ATGAGACGCGCCGGTTTAATCAAACCGCTGTTGCGTATAAATAACGAAAAACAACGTGTT\n",
+            "---\n",
+            "protein MEYLAHPSTLGLAVGVACGMCLGWSLRVCFGMLPKSKTSKTHTDTESEASILGDSGEYKM\n",
+            "---\n",
+            "protein MRRAGLIKPLLRINNEKQRVWRKNYATQVVSGLEECSLDPKEYVDFKRQLRQLNLPHKDG\n",
+            "---\n",
+            "matching bases:0/210\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "/usr/local/lib/python3.11/dist-packages/Bio/Seq.py:2879: BiopythonWarning: Partial codon, len(sequence) not a multiple of three. Explicitly trim the sequence or add trailing N before translation. This may become an error in future.\n",
+            "  warnings.warn(\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "\n",
+        "records=list(SeqIO.parse('test.fasta','fasta'))\n",
+        "seq1,seq2= records[0].seq,records[1].seq\n",
+        "matches=sum(1 for a,b in zip(seq1,seq2) if a==b)\n",
+        "print(f'matching bases:{matches}/{min(len(seq1),len(seq2))}')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "YEubIFytjNiZ",
+        "outputId": "ca06258e-deb9-49a4-815a-c7eaa392ceb4"
+      },
+      "execution_count": 45,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "matching bases:0/210\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "match_count = 0\n",
+        "for i in range(min(len(seq1), len(seq2))):\n",
+        "  if seq1[i] == seq2[i]:\n",
+        "    match_count += 1\n",
+        "print(f'matching bases:{match_count}/{min(len(seq1), len(seq2))}')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "nRSNooC6lM8u",
+        "outputId": "22b30283-5f27-422a-d783-5d2431c6c4ec"
+      },
+      "execution_count": 47,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "matching bases:0/210\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
